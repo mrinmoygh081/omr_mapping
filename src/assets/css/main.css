@@ -1,0 +1,108 @@
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.clr_red {
+  color: rgb(255, 32, 32);
+  font-weight: 700;
+}
+
+/* Header */
+.menu_link ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.menu_link ul li a {
+  margin: 10px;
+  font-size: 16px;
+}
+
+.menu_link ul li button {
+  margin: 10px;
+  font-size: 16px;
+  padding: 3px 10px;
+  border: 1px solid #cbb852;
+  background-color: #cbb852;
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Template Header */
+.map_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  height: 65px;
+  transition: left 0.3s ease;
+}
+.map_header ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.map_header ul li svg {
+  font-size: 18px;
+  color: #fff;
+}
+.mapping_image {
+  margin: 30px;
+  border: 1px solid #444;
+  min-height: 300px;
+  overflow: scroll;
+}
+.mapping_data {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  border-left: 1px solid #000;
+  padding-left: 30px;
+  padding-top: 20px;
+  margin-top: 70px;
+  overflow-y: scroll;
+}
+.mapping_data > ul {
+  display: inline-block;
+}
+.mapping_data > ul > li {
+  padding: 10px 0;
+}
+.mapping_data > ul > li p {
+  margin: 0;
+}
+.mapping_data > ul > li > p svg,
+.mapping_data > ul > li > p span {
+  cursor: pointer;
+}
+.mapping_data > ul > li > p svg.plusminus {
+  border: 1px solid #666;
+  padding: 2px;
+}
+.mapping_data > ul > li > p svg.type {
+  font-size: 17px;
+  background: #8181ff;
+  color: #fff;
+  font-weight: 800;
+  padding: 1px;
+  border-radius: 2px;
+}
+.mapping_data ul.drop {
+  padding-left: 30px;
+}
+.mapping_data ul.drop > li {
+  margin: 4px 0;
+  cursor: pointer;
+  padding: 1px 3px;
+  border: 1px solid #ccc;
+}

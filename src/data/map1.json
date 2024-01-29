@@ -1,0 +1,51 @@
+[
+  {
+    "id": 2,
+    "type": "checker-group",
+    "isOpen": false,
+    "name": "Q01",
+    "x": 2,
+    "y": 3,
+    "height": "10px",
+    "width": "30px",
+    "parent": null,
+    "child": [
+      {
+        "id": 1,
+        "type": "checker",
+        "isOpen": false,
+        "name": "Q01A",
+        "x": 2,
+        "y": 3,
+        "height": "10px",
+        "width": "30px",
+        "parent": 2,
+        "child": []
+      },
+      {
+        "id": 3,
+        "type": "checker",
+        "name": "Q01B",
+        "isOpen": false,
+        "x": 2,
+        "y": 3,
+        "height": "10px",
+        "width": "30px",
+        "parent": 2,
+        "child": []
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "type": "alpha",
+    "name": "dsklf",
+    "isOpen": false,
+    "x": 2,
+    "y": 3,
+    "height": "10px",
+    "width": "30px",
+    "parent": null,
+    "child": []
+  }
+]
