@@ -6,10 +6,22 @@ import { useNavigate } from "react-router-dom";
 
 const Templates = () => {
   const navigate = useNavigate();
+  const [templates, setTemplates] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddForm = () => {
-    setIsLoading(true);
+    // setIsLoading(true);
+    const templateName = document.getElementById("templateName").value;
+    const imageFile = document.getElementById("imageFile").files[0];
+
+    setTemplates((prevTemplates) => [
+      ...prevTemplates,
+      { name: templateName, image: imageFile },
+    ]);
+  };
+  // Function to navigate to "/mapping" with image data
+  const handleNavigateToMapping = (template) => {
+    navigate("/mapping", { state: { template } });
   };
 
   return (
@@ -29,9 +41,9 @@ const Templates = () => {
                           <th className=" min-w-140px">Action</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      {/* <tbody>
                         <tr>
-                          <td className="fw-semibold">Template 1</td>
+                          <td className="fw-semibold">Template </td>
                           <td>
                             <button
                               className="btn btn-icon btn-dark btn-active-color-primary btn-sm me-1"
@@ -42,6 +54,24 @@ const Templates = () => {
                             </button>
                           </td>
                         </tr>
+                      </tbody> */}
+                      <tbody>
+                        {templates.map((template, index) => (
+                          <tr key={index}>
+                            <td className="fw-semibold">{template.name}</td>
+                            <td>
+                              <button
+                                className="btn btn-icon btn-dark btn-active-color-primary btn-sm me-1"
+                                title="View"
+                                onClick={() =>
+                                  handleNavigateToMapping(template)
+                                }
+                              >
+                                <FaSearch />
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
@@ -59,7 +89,7 @@ const Templates = () => {
                 </h3>
               </div>
               <div className="card-body py-3">
-                <div className="pt-5">
+                {/* <div className="pt-5">
                   <label htmlFor="templateName">Template Name</label>
                   <input
                     type="text"
@@ -75,6 +105,25 @@ const Templates = () => {
                     type="file"
                     className="form-control pb-2"
                     id="templateName"
+                    name="image"
+                  />
+                </div> */}
+                <div className="pt-5">
+                  <label htmlFor="templateName">Template Name</label>
+                  <input
+                    type="text"
+                    className="form-control pb-2"
+                    id="templateName"
+                    name="name"
+                    placeholder="Enter template name"
+                  />
+                </div>
+                <div className="py-5">
+                  <label htmlFor="imageFile">OMR Image</label>
+                  <input
+                    type="file"
+                    className="form-control pb-2"
+                    id="imageFile"
                     name="image"
                   />
                 </div>

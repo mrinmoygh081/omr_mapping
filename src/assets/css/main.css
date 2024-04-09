@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 label {
   font-weight: 600;
   margin-bottom: 5px;
@@ -105,4 +110,10 @@ ul {
   cursor: pointer;
   padding: 1px 3px;
   border: 1px solid #ccc;
+}
+
+.ria {
+  position: sticky;
+  top: 0;
+  background: white;
 }
