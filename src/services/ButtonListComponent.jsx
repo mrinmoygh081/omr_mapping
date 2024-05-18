@@ -1,6 +1,6 @@
 // ButtonListComponent.js
 
-import React from "react";
+import React, { useState } from "react";
 import { PiCursorBold } from "react-icons/pi";
 import CopyComponent from "./CopyComponent";
 import ZoomControls from "./ZoomControls";
@@ -11,6 +11,7 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 function ButtonListComponent({
+  handleMove,
   toggleDrawingMode,
   toggleDrawingModeparent,
   toggleDrawingModechild,
@@ -33,7 +34,14 @@ function ButtonListComponent({
   toggleDrMode,
   handleUndo,
   isCopyDisabled,
+  newBoxName,
+  setNewBoxName,
+  handleRename,
 }) {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
   return (
     <ul>
       <li>
@@ -50,7 +58,7 @@ function ButtonListComponent({
           )}
         </button>
       </li>
-      <li>
+      {/* <li>
         <button
           className="btn btn-icon btn-dark btn-active-color-primary btn-sm me-1"
           title="Checker Group"
@@ -77,7 +85,101 @@ function ButtonListComponent({
             <IoCheckmarkSharp />
           )}
         </button>
-      </li>
+      </li> */}
+
+      <div>
+        <div className="dropdown">
+          <button
+            className="btn btn-dark dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            aria-expanded="false"
+            onClick={toggleDropdown}
+          >
+            Dropdown
+          </button>
+          {/* {showDropdown && <>hello</>} */}
+          {showDropdown && (
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li>
+                <button
+                  className="dropdown-item"
+                  title="Checker Group"
+                  name="parent"
+                  onClick={toggleDrawingModeparent}
+                >
+                  {drawingModeparent ? (
+                    <IoCheckmarkDoneSharp style={{ color: "yellow" }} />
+                  ) : (
+                    <IoCheckmarkDoneSharp />
+                  )}
+                  Checker Group
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  title="Checker"
+                  name="child"
+                  onClick={toggleDrawingModechild}
+                >
+                  {drawingModechild ? (
+                    <IoCheckmarkSharp style={{ color: "yellow" }} />
+                  ) : (
+                    <IoCheckmarkSharp />
+                  )}
+                  Checker
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  title="Anchor"
+                  name=" Anchor"
+                  onClick={toggleDrawingModechild}
+                >
+                  {drawingModechild ? (
+                    <IoCheckmarkSharp style={{ color: "yellow" }} />
+                  ) : (
+                    <IoCheckmarkSharp />
+                  )}
+                  Anchor
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  title="RollNumber"
+                  name="RollNumber"
+                  onClick={toggleDrawingModechild}
+                >
+                  {drawingModechild ? (
+                    <IoCheckmarkSharp style={{ color: "yellow" }} />
+                  ) : (
+                    <IoCheckmarkSharp />
+                  )}
+                  Roll number
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  title="Question paper setNo."
+                  name="QpNo."
+                  onClick={toggleDrawingModechild}
+                >
+                  {drawingModechild ? (
+                    <IoCheckmarkSharp style={{ color: "yellow" }} />
+                  ) : (
+                    <IoCheckmarkSharp />
+                  )}
+                  Question paper setNo.
+                </button>
+              </li>
+            </ul>
+          )}
+        </div>
+      </div>
 
       <li>
         <CopyComponent
@@ -132,7 +234,7 @@ function ButtonListComponent({
           <ImUndo2 />
         </button>
       </li>
-      <li>
+      {/* <li>
         <input
           type="text"
           placeholder="Enter box name"
@@ -140,6 +242,22 @@ function ButtonListComponent({
           onChange={(e) => setBoxNameInput(e.target.value)}
           className="form-control mt-3"
         />
+      </li> */}
+      <li>
+        {selectedBoxIndex !== null && (
+          <div style={{ display: "flex" }}>
+            <input
+              type="text"
+              placeholder="Enter new name"
+              value={newBoxName}
+              onChange={(e) => setNewBoxName(e.target.value)}
+              className="form-control mt-3"
+            />
+            <button className=" btn btn-rename " onClick={handleRename}>
+              Rename
+            </button>
+          </div>
+        )}
       </li>
     </ul>
   );

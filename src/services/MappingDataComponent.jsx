@@ -39,26 +39,26 @@ function MappingDataComponent({
                   box?.isOpen ? (
                     <>
                       <FaMinus className="plusminus" />{" "}
-                      <BsCheckAll className="type" /> <span>{box?.mode}Q</span>
+                      <BsCheckAll className="type" /> <span>{box?.name}</span>
                       <span>{index + 1}</span>
                     </>
                   ) : (
                     <>
                       <FaPlus className="plusminus" />{" "}
-                      <BsCheckAll className="type" /> <span>{box?.mode}Q</span>
+                      <BsCheckAll className="type" /> <span>{box?.name}</span>
                       <span>{index + 1}</span>
                     </>
                   )
                 ) : (
                   <span>
-                    <BsCheck className="type" /> <span>{box?.mode}</span>
+                    <BsCheck className="type" /> <span>{box?.name}</span>
                     <span>C {index + 1}</span>
                   </span>
                 )}
               </p>
               {box?.mode === "parent" && box.isOpen && (
                 <ul className="drop">
-                  <p>Child Boxes:</p>
+                  {/* <p>Child Boxes:</p> */}
                   {box.children.map((childBox, childIndex) => (
                     <li key={childIndex}>
                       <p
@@ -75,7 +75,7 @@ function MappingDataComponent({
                           display: "inline-block",
                         }}
                       >
-                        Child {childIndex + 1}
+                        childBox.name{childIndex + 1}
                         <br />
                       </p>
                     </li>

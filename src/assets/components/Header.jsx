@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { logoutHandler } from "../redux/slices/authSlice";
+import { logoutHandler } from "../../redux/slices/authSlice";
+// ../redux/slices/authSlice
 import { Link } from "react-router-dom";
 
 const Header = ({ title }) => {

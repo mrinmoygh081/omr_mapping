@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-import Header from "../components/Header";
+import Header from "../assets/components/Header";
 import { useNavigate } from "react-router-dom";
 
 const Templates = () => {

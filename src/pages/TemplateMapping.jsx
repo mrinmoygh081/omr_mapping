@@ -11,12 +11,12 @@ import { useLocation } from "react-router-dom";
 const TemplateMapping = () => {
   const location = useLocation();
   const [data, setData] = useState(map1);
-  console.log("locationnnnn", location);
+  // console.log("locationnnnn", location);
   const images = location.state ? location.state.template.image : null;
 
   useEffect(() => {
     // Access the images here and do something with them
-    console.log("Received images:", images);
+    // console.log("Received images:", images);
 
     // Set data if needed
     setData(map1); // Set your data accordingly
@@ -29,10 +29,10 @@ const TemplateMapping = () => {
   // }, [map1]);
 
   const handleDropDown = (item) => {
-    console.log(item);
+    // console.log(item);
   };
 
-  console.log("Render - images:", images);
+  // console.log("Render - images:", images);
   return (
     <>
       {/* <div className="map_header shadow">
