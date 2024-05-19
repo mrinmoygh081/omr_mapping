@@ -319,127 +319,6 @@ function Templateimage({ images }) {
   //   }
   // };
 
-  // const handleMouseUp = () => {
-  //   if (dragging && drMode) {
-  //     setDragging(false);
-  //     setStartCoordinates({ x: null, y: null });
-  //     setEndCoordinates({ x: null, y: null });
-  //     setOriginalMousePosition(null);
-  //   } else if (drawingMode) {
-  //     setDragging(false);
-
-  //     if (startCoordinates.x !== null && endCoordinates.x !== null) {
-  //       const minHeight = 7; // Minimum height requirement
-  //       const minWidth = 7; // Minimum width requirement
-
-  //       // Calculate height and width of the box
-  //       const height = Math.abs(endCoordinates.y - startCoordinates.y);
-  //       const width = Math.abs(endCoordinates.x - startCoordinates.x);
-
-  //       // Check if height and width meet the minimum requirement
-  //       if (height >= minHeight && width >= minWidth) {
-  //         let newBox;
-
-  //         if (drawingModeparent) {
-  //           newBox = {
-  //             id: generateUniqueId(),
-  //             name: newBoxName,
-  //             start: { ...startCoordinates },
-  //             end: { ...endCoordinates },
-  //             mode: "parent",
-  //             height: Math.abs(endCoordinates.y - startCoordinates.y),
-  //             width: Math.abs(endCoordinates.x - startCoordinates.x),
-  //             children: [],
-  //           };
-  //         } else if (drawingModechild) {
-  //           newBox = {
-  //             id: generateUniqueId(),
-  //             name: newBoxName,
-  //             start: { ...startCoordinates },
-  //             end: { ...endCoordinates },
-  //             mode: "child",
-  //             height: Math.abs(endCoordinates.y - startCoordinates.y),
-  //             width: Math.abs(endCoordinates.x - startCoordinates.x),
-  //           };
-
-  //           const insideParent = boxes.some(
-  //             (box) =>
-  //               box.mode === "parent" &&
-  //               newBox.start.x > box.start.x &&
-  //               newBox.start.y > box.start.y &&
-  //               newBox.end.x < box.end.x &&
-  //               newBox.end.y < box.end.y
-  //           );
-  //           console.log("insideParent", insideParent);
-
-  //           if (insideParent) {
-  //             const parentIndex = boxes.findIndex(
-  //               (box) =>
-  //                 box.mode === "parent" &&
-  //                 newBox.start.x > box.start.x &&
-  //                 newBox.start.y > box.start.y &&
-  //                 newBox.end.x < box.end.x &&
-  //                 newBox.end.y < box.end.y
-  //             );
-  //             console.log("parentIndex", parentIndex);
-
-  //             const updatedBoxes = [...boxes];
-  //             updatedBoxes[parentIndex].children.push(newBox);
-  //             setBoxes(updatedBoxes);
-
-  //             return;
-  //           }
-  //         } else if (drawingModeAnchor) {
-  //           newBox = {
-  //             id: generateUniqueId(),
-  //             name: newBoxName,
-  //             start: { ...startCoordinates },
-  //             end: { ...endCoordinates },
-  //             mode: "anchor",
-  //             height: Math.abs(endCoordinates.y - startCoordinates.y),
-  //             width: Math.abs(endCoordinates.x - startCoordinates.x),
-  //           };
-  //         } else if (drawingModeRollNo) {
-  //           newBox = {
-  //             id: generateUniqueId(),
-  //             name: newBoxName,
-  //             start: { ...startCoordinates },
-  //             end: { ...endCoordinates },
-  //             mode: "RollNo",
-  //             height: Math.abs(endCoordinates.y - startCoordinates.y),
-  //             width: Math.abs(endCoordinates.x - startCoordinates.x),
-  //           };
-  //         } else if (drawingModeQuestionpaper) {
-  //           newBox = {
-  //             id: generateUniqueId(),
-  //             name: newBoxName,
-  //             start: { ...startCoordinates },
-  //             end: { ...endCoordinates },
-  //             mode: "Questionpaper",
-  //             height: Math.abs(endCoordinates.y - startCoordinates.y),
-  //             width: Math.abs(endCoordinates.x - startCoordinates.x),
-  //           };
-  //         }
-
-  //         if (newBox) {
-  //           setBoxes([...boxes, newBox]);
-  //           setBoxNameInput("");
-  //           console.log(
-  //             "Boxes data:",
-  //             JSON.stringify([...boxes, newBox], null, 2)
-  //           );
-  //         } else {
-  //           console.log(
-  //             "Neither drawingModeparent nor drawingModechild is active."
-  //           );
-  //         }
-  //       } else {
-  //         console.log("Minimum height and width requirement not met");
-  //       }
-  //     }
-  //   }
-  // };
-
   const handleMouseUp = () => {
     if (dragging && drMode) {
       setDragging(false);
@@ -475,6 +354,7 @@ function Templateimage({ images }) {
           } else if (drawingModechild) {
             newBox = {
               id: generateUniqueId(),
+              name: newBoxName,
               start: { ...startCoordinates },
               end: { ...endCoordinates },
               mode: "child",
@@ -490,6 +370,7 @@ function Templateimage({ images }) {
                 newBox.end.x < box.end.x &&
                 newBox.end.y < box.end.y
             );
+            console.log("insideParent", insideParent);
 
             if (insideParent) {
               const parentIndex = boxes.findIndex(
@@ -500,14 +381,7 @@ function Templateimage({ images }) {
                   newBox.end.x < box.end.x &&
                   newBox.end.y < box.end.y
               );
-
-              // Generate the sequential name for the child
-              const parentBox = boxes[parentIndex];
-              const childName = String.fromCharCode(
-                97 + parentBox.children.length
-              ); // 'a' is char code 97
-
-              newBox.name = childName;
+              console.log("parentIndex", parentIndex);
 
               const updatedBoxes = [...boxes];
               updatedBoxes[parentIndex].children.push(newBox);
@@ -1272,7 +1146,7 @@ function Templateimage({ images }) {
     }
   };
   const toggleDrawingModeAnchor = () => {
-    setDrawingModeAnchor(!drawingModeAnchor);
+    setDrawingModeparent(!drawingModeAnchor);
     setDragging(false);
 
     if (drawingModechild) {
@@ -1289,7 +1163,7 @@ function Templateimage({ images }) {
     }
   };
   const toggleDrawingModeRollNo = () => {
-    setdrawingModeRollNo(!drawingModeRollNo);
+    setDrawingModeparent(!drawingModeparent);
     setDragging(false);
 
     if (drawingModechild) {
@@ -1306,7 +1180,7 @@ function Templateimage({ images }) {
     }
   };
   const toggleDrawingModeQuestionpaper = () => {
-    setDrawingModeQuestionpaper(!drawingModeQuestionpaper);
+    setDrawingModeparent(!drawingModeparent);
     setDragging(false);
 
     if (drawingModechild) {
@@ -1353,9 +1227,6 @@ function Templateimage({ images }) {
             drawingMode={drawingMode}
             drawingModeparent={drawingModeparent}
             drawingModechild={drawingModechild}
-            drawingModeRollNo={drawingModeRollNo}
-            drawingModeAnchor={drawingModeAnchor}
-            drawingModeQuestionpaper={drawingModeQuestionpaper}
             handleCopyBoxClick={handleCopyBoxClick}
             handlePasteBoxClick={handlePasteBoxClick}
             selectedBoxIndex={selectedBoxIndex}
@@ -1373,8 +1244,16 @@ function Templateimage({ images }) {
             handleUndo={handleUndo}
             isCopyDisabled={boxes.length === 0} // Pass the disabled prop based on the condition
           />
+          {/* <button onClick={toggleDrMode}>
+            {drMode ? "True" : "False"} Drag
+          </button> */}
         </div>
-
+        {/* <div>
+          <button onClick={() => handleMove("left")}>Move Left</button>
+          <button onClick={() => handleMove("right")}>Move Right</button>
+          <button onClick={() => handleMove("top")}>Move Top</button>
+          <button onClick={() => handleMove("bottom")}>Move Bottom</button>
+        </div> */}
         <div className="buttons-container">
           {zoomFactor > 1 && (
             <>

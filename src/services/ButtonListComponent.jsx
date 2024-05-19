@@ -15,9 +15,15 @@ function ButtonListComponent({
   toggleDrawingMode,
   toggleDrawingModeparent,
   toggleDrawingModechild,
+  toggleDrawingModeAnchor,
+  toggleDrawingModeRollNo,
+  toggleDrawingModeQuestionpaper,
   drawingMode,
   drawingModeparent,
   drawingModechild,
+  drawingModeRollNo,
+  drawingModeAnchor,
+  drawingModeQuestionpaper,
   handleCopyBoxClick,
   handlePasteBoxClick,
   selectedBoxIndex,
@@ -106,7 +112,10 @@ function ButtonListComponent({
                   className="dropdown-item"
                   title="Checker Group"
                   name="parent"
-                  onClick={toggleDrawingModeparent}
+                  onClick={() => {
+                    toggleDrawingModeparent();
+                    setShowDropdown(!showDropdown);
+                  }}
                 >
                   {drawingModeparent ? (
                     <IoCheckmarkDoneSharp style={{ color: "yellow" }} />
@@ -121,7 +130,10 @@ function ButtonListComponent({
                   className="dropdown-item"
                   title="Checker"
                   name="child"
-                  onClick={toggleDrawingModechild}
+                  onClick={() => {
+                    toggleDrawingModechild();
+                    setShowDropdown(!showDropdown);
+                  }}
                 >
                   {drawingModechild ? (
                     <IoCheckmarkSharp style={{ color: "yellow" }} />
@@ -136,9 +148,12 @@ function ButtonListComponent({
                   className="dropdown-item"
                   title="Anchor"
                   name=" Anchor"
-                  onClick={toggleDrawingModechild}
+                  onClick={() => {
+                    toggleDrawingModeAnchor();
+                    setShowDropdown(!showDropdown);
+                  }}
                 >
-                  {drawingModechild ? (
+                  {drawingModeAnchor ? (
                     <IoCheckmarkSharp style={{ color: "yellow" }} />
                   ) : (
                     <IoCheckmarkSharp />
@@ -151,9 +166,12 @@ function ButtonListComponent({
                   className="dropdown-item"
                   title="RollNumber"
                   name="RollNumber"
-                  onClick={toggleDrawingModechild}
+                  onClick={() => {
+                    toggleDrawingModeRollNo();
+                    setShowDropdown(!showDropdown);
+                  }}
                 >
-                  {drawingModechild ? (
+                  {drawingModeRollNo ? (
                     <IoCheckmarkSharp style={{ color: "yellow" }} />
                   ) : (
                     <IoCheckmarkSharp />
@@ -166,9 +184,12 @@ function ButtonListComponent({
                   className="dropdown-item"
                   title="Question paper setNo."
                   name="QpNo."
-                  onClick={toggleDrawingModechild}
+                  onClick={() => {
+                    toggleDrawingModeQuestionpaper();
+                    setShowDropdown(!showDropdown);
+                  }}
                 >
-                  {drawingModechild ? (
+                  {drawingModeQuestionpaper ? (
                     <IoCheckmarkSharp style={{ color: "yellow" }} />
                   ) : (
                     <IoCheckmarkSharp />

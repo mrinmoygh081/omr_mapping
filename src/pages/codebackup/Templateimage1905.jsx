@@ -1,3 +1,5 @@
+// child box is drawn inside the parent should have name sequentially incrementing
+
 import React, { useEffect, useState, useCallback } from "react";
 import MappingDataComponent from "../services/MappingDataComponent";
 
