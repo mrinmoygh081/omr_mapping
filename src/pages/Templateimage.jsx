@@ -8,6 +8,7 @@ import {
   FaArrowUp,
   FaArrowDown,
 } from "react-icons/fa";
+import axios from "axios";
 
 function Templateimage({ images }) {
   const [newBoxName, setNewBoxName] = useState("");
@@ -563,6 +564,36 @@ function Templateimage({ images }) {
           console.log("Minimum height and width requirement not met");
         }
       }
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:4002/api/v1/master/insertomrData",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(boxes),
+        }
+      );
+      console.log("API response:", response);
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code outside the range of 2xx
+        console.error("Error hitting API:", error.response.data);
+        console.error("Status code:", error.response.status);
+        console.error("Headers:", error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("No response received:", error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error in setting up the request:", error.message);
+      }
+      console.error("Error config:", error.config);
     }
   };
 
@@ -1372,6 +1403,7 @@ function Templateimage({ images }) {
             toggleDrMode={toggleDrMode}
             handleUndo={handleUndo}
             isCopyDisabled={boxes.length === 0} // Pass the disabled prop based on the condition
+            handleSave={handleSave}
           />
         </div>
 
@@ -1477,6 +1509,7 @@ function Templateimage({ images }) {
               </div>
             ))}
           </div>
+
           <MappingDataComponent
             boxes={boxes}
             selectedBoxIndex={selectedBoxIndex}

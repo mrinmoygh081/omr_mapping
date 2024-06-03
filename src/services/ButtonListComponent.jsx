@@ -43,6 +43,7 @@ function ButtonListComponent({
   newBoxName,
   setNewBoxName,
   handleRename,
+  handleSave,
 }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
@@ -243,18 +244,19 @@ function ButtonListComponent({
           )}
         </button>
       </li>
-
-      <li>
+      {/* **********Undo************ */}
+      {/* <li>
         <button
           className="btn btn-icon btn-dark btn-active-color-primary btn-sm me-1"
           title="Undo"
           name="Undo"
           onClick={handleUndo}
         >
-          {/* handleUndoU */}
           <ImUndo2 />
         </button>
-      </li>
+      </li> */}
+
+      {/* ************************ */}
       {/* <li>
         <input
           type="text"
@@ -279,6 +281,17 @@ function ButtonListComponent({
             </button>
           </div>
         )}
+      </li>
+
+      <li>
+        <button
+          className="btn btn-icon btn-dark btn-active-color-primary btn-sm me-1"
+          title="drag"
+          name="drag"
+          onClick={handleSave}
+        >
+          Save
+        </button>
       </li>
     </ul>
   );

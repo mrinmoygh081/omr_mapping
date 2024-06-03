@@ -13,12 +13,15 @@ const Templates = () => {
     // setIsLoading(true);
     const templateName = document.getElementById("templateName").value;
     const imageFile = document.getElementById("imageFile").files[0];
+    console.log("hey i am image file...", imageFile);
 
     setTemplates((prevTemplates) => [
       ...prevTemplates,
       { name: templateName, image: imageFile },
     ]);
   };
+
+  console.log("hey i am templates...", templates);
   // Function to navigate to "/mapping" with image data
   const handleNavigateToMapping = (template) => {
     navigate("/mapping", { state: { template } });
